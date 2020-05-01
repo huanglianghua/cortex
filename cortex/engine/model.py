@@ -104,11 +104,11 @@ class Model(nn.Module):
             cur_step = (state.epoch - 1) * state.epoch_size + state.step
             if isinstance(schedulers, list):
                 for s in schedulers:
-                    if hasattr(s, 'step_iter'):
-                        s.step_iter(step=cur_step - 1)
+                    if hasattr(s, 'step_batch'):
+                        s.step_batch(step=cur_step - 1)
             else:
-                if hasattr(schedulers, 'step_iter'):
-                    schedulers.step_iter(step=cur_step - 1)
+                if hasattr(schedulers, 'step_batch'):
+                    schedulers.step_batch(step=cur_step - 1)
         
         # check if it is the last step of this epoch
         if state.step == state.epoch_size and schedulers is not None:
