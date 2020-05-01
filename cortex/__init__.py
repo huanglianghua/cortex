@@ -4,3 +4,4 @@ import cortex.losses as losses
 import cortex.modules as modules
 import cortex.optim as optim
 import cortex.engine as engine
+import cortex.apps as apps
