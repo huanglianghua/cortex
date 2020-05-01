@@ -11,7 +11,5 @@ if __name__ == '__main__':
         keywords=['cortex', 'deep learning'],
         url='https://github.com/huanglianghua/cortex',
         packages=find_packages(exclude=('tests', 'tools')),
-        package_data={'cortex.data':
-                      ['cortex/data/datasets/_splits/*.json']},
         include_package_data=True,
         license='MIT License')
