@@ -1,0 +1,13 @@
+.*
+*.py[cod]
+*.pth
+*.pkl
+*.log
+*.so
+*.egg-info
+__pycache__/
+build/
+checkpoints/
+runs/
+cache/
+!.gitignore
