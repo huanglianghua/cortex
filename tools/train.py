@@ -15,12 +15,15 @@ def train_metric_learning_baseline(dataset='CUB200',
         root_dir=root_dir, subset='test')
 
     # setup model
+    batch_size = 128
+    instances_per_batch = 8
     if criterion in ['NPairLoss', 'NTXentLoss']:
         instances_per_batch = 2
-    else:
-        instances_per_batch = 8
+    elif criterion in ['SoftTripleLoss']:
+        batch_size = 96
     model = apps.MetricLearningBaseline(
         loss_name=criterion,
+        batch_size=batch_size,
         instances_per_batch=instances_per_batch)
     
     # run training
@@ -30,7 +33,7 @@ def train_metric_learning_baseline(dataset='CUB200',
         val_data=val_data,
         val_metric=data.MetricLearningMetrics(normalize_embeds=True),
         best_indicator='top1',
-        num_epochs=100,
+        num_epochs=160 if dataset == 'StanfordOnlineProducts' else 80,
         distributed=False,
         gpus_per_machine=1,
         non_blocking=True,
